@@ -37,8 +37,6 @@ class Dao {
                 this.saveFile();
                 resolve(tmp);
             }
-            // const tmp = new User(user);
-
         })
     }
     deleteUser(id: number) {
