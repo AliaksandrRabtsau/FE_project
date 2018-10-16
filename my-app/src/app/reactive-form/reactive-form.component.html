@@ -1,0 +1,137 @@
+<div class="main-container">
+  <div class="card-header bg-primary">Submit</div>
+  <div class="card-body">
+    <form
+      novalidate
+      (ngSubmit)="submit()"
+      [formGroup]="userForm">
+      <fieldset>
+        <div class="form-group row"
+             [ngClass]="{'has-error': (userForm.get('userName').touched || userForm.get('userName').dirty) && !userForm.get('userName').valid}"
+        >
+          <label class="col-sm-4 col-form-label" for="userNameId">
+            User Name
+          </label>
+          <div class="col-sm-12">
+            <input class="form-control"
+                   id="userNameId"
+                   type="text"
+                   placeholder="username (required)"
+                   formControlName="userName">
+                   <!--appAsyncUsernameValidator-->
+                   <!--appAsyncCamelCaseValidator>-->
+            <span class="form-text text-muted"
+                  *ngIf="(userForm.get('userName').touched || userForm.get('userName').dirty) && userForm.get('userName').errors">
+              <span *ngIf="userForm.get('userName').errors.asyncRequiredUsername">
+                Please enter username.
+              </span>
+              <span *ngIf="userForm.get('userName').errors.LettersUserName">
+                Please enter correct username.
+              </span>
+              <span *ngIf="userForm.get('userName').errors.asyncCamelCaseUsernameInvalid">
+                Please enter ONE or TWO words. First letters must be in uppercase.
+              </span>
+              <span *ngIf="userForm.get('userName').errors.asyncUsernameInvalid">
+                Please enter another username.
+              </span>
+              <span *ngIf="userForm.get('userName').errors.asyncOnlyLettersUsername">
+                Please enter only english letters without number and special symbols.
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row"
+             [ngClass]="{'has-error': (userForm.get('userAge').touched || userForm.get('userAge').dirty) && !userForm.get('userAge').valid}">
+          <label class="col-sm-4 col-form-label" for="age">
+            Age
+          </label>
+          <div class="col-sm-12">
+            <input class="form-control"
+                   id="age"
+                   type="text"
+                   placeholder="user age from 18 to 65"
+                   formControlName="userAge">
+            <span class="form-text text-muted"
+                  *ngIf="(userForm.get('userAge').touched || userForm.get('userAge').dirty) && userForm.get('userAge').errors">
+              <span *ngIf="userForm.get('userAge').errors.RangeUserAge">
+                Please enter correct age from 18 to 65.
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row"
+             [ngClass]="{'has-error': (userForm.get('userBirth').touched || userForm.get('userBirth').dirty) && !userForm.get('userBirth').valid}">
+          <label class="col-sm-4 col-form-label" for="dateOfBirth">
+            Birthday
+          </label>
+          <div class="col-sm-12">
+            <input class="form-control"
+                   id="dateOfBirth"
+                   type="text"
+                   placeholder="YYYY/MM/DD"
+                   formControlName="userBirth">
+            <span class="form-text text-muted"
+                  *ngIf="(userForm.get('userBirth').touched || userForm.get('userBirth').dirty) && userForm.get('userBirth').errors">
+              <span *ngIf="userForm.get('userBirth').errors.userDateOfBirth">
+                Please enter correct date of birth. Example (2000/11/25).
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row"
+             [ngClass]="{'has-error': (userForm.get('userLoginDate').touched || userForm.get('userLoginDate').dirty) && !userForm.get('userLoginDate').valid}">
+          <label class="col-sm-4 col-form-label" for="dateOfLogin">
+            Date of login
+          </label>
+          <div class="col-sm-12">
+            <input class="form-control"
+                   id="dateOfLogin"
+                   type="text"
+                   placeholder="DD MMMM YYYY"
+                   formControlName="userLoginDate">
+            <span class="form-text text-muted"
+                  *ngIf="(userForm.get('userLoginDate').touched || userForm.get('userLoginDate').dirty) && userForm.get('userLoginDate').errors">
+              <span *ngIf="userForm.get('userLoginDate').errors.userDateOfLogin">
+                Please enter correct date of login. Example (25 November 2000).
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row"
+             [ngClass]="{'has-error': (userForm.get('userNotifyDate').touched || userForm.get('userNotifyDate').dirty) && !userForm.get('userNotifyDate').valid}">
+          <label class="col-sm-6 col-form-label" for="dateOfFirstNotification">
+            Date of first notification
+          </label>
+          <div class="col-sm-12">
+            <input class="form-control"
+                   id="dateOfFirstNotification"
+                   type="text"
+                   placeholder="DD-MMM-YY"
+                   formControlName="userNotifyDate">
+            <span class="form-text text-muted"
+                  *ngIf="(userForm.get('userNotifyDate').touched || userForm.get('userNotifyDate').dirty) && userForm.get('userNotifyDate').errors">
+              <span *ngIf="userForm.get('userNotifyDate').errors.userDateOfFirstNotify">
+                Please enter correct date of first notification. Example (25-Nov-00).
+              </span>
+            </span>
+          </div>
+        </div>
+        <button class="btn btn-primary"
+                type="submit"
+                [disabled]="!userForm.valid">
+          submit
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div class="user-info" *ngIf="submitted">
+  <h4>User Information</h4>
+    <span> User name: {{ submittedName }}</span><br>
+    <span> User age: {{ submittedAge }}</span><br>
+    <span> User birthday: {{ submittedBirthday }}</span><br>
+    <span> User login date: {{ submittedDateOfLogin }}</span><br>
+    <span> User date of notification: {{ submittedDateOfNotify }}</span><br>
+  <!--<span> User date of notification: {{ submittedDateOfNotify | date }}</span>-->
+</div>
+
