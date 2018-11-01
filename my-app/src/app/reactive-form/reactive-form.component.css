@@ -22,3 +22,7 @@ input.ng-pending {
   text-align: right;
   margin-right: 5%;
 }
+
+.card-header {
+  background: cornflowerblue;
+}

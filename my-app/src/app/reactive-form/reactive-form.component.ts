@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
+import { AuthenticationService } from '../services';
+import { Router} from '@angular/router';
 import { AgeValidator } from '../validators';
 import { UserBirthdayValidator } from '../validators';
 import { UserDateOfLoginValidator } from '../validators';
@@ -10,39 +12,47 @@ import { AsyncRequiredValidatorDirective } from '../validators';
 import { AsyncCamelCaseValidatorDirective } from '../validators';
 import { AsyncOnlyLettersValidatorDirective } from '../validators';
 
+import { User } from '../model/user';
+
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
   styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent implements OnInit {
-  submittedName: string;
-  submittedAge: number;
-  submittedBirthday: string;
-  submittedDateOfLogin: string;
-  submittedDateOfNotify: string;
 
   userForm: FormGroup;
   submitted = false;
+  user: User | object;
 
   constructor(private fb: FormBuilder,
               private asyncUsernameValidator: AsyncUsernameValidatorDirective,
               private asyncCamelCaseValidator: AsyncCamelCaseValidatorDirective,
               private asyncRequiredValidator: AsyncRequiredValidatorDirective,
-              private asyncOnlyLettersValidator: AsyncOnlyLettersValidatorDirective) { }
+              private asyncOnlyLettersValidator: AsyncOnlyLettersValidatorDirective,
+              private auth: AuthenticationService,
+              private router: Router) {
+    this.user = this.auth.getCurrentUser().subscribe(user => { this.user = user; });
+  }
 
   ngOnInit() {
     this.buildForm();
   }
 
   submit(): void {
-    this.submittedName = this.userForm.value.userName;
-    this.submittedAge = this.userForm.value.userAge;
-    this.submittedBirthday = this.userForm.value.userBirth;
-    this.submittedDateOfLogin = this.userForm.value.userLoginDate;
-    this.submittedDateOfNotify = this.userForm.value.userNotifyDate;
-    this.submitted = true;
+    const params: User = {
+      name: this.f.userName.value as string,
+      age: this.f.userAge.value as number,
+      dateOfBirth: this.f.userBirth.value as string,
+      dateOfFirstLogin: this.f.userLoginDate.value as string,
+      dateOfNextNotification: this.f.userNotifyDate.value as string
+    };
+    this.auth.updateUser(params).subscribe(() => {
+      this.router.navigate(['/user-info']);
+    });
   }
+
+  get f() { return this.userForm.controls; }
 
   private buildForm() {
     this.userForm = this.fb.group({

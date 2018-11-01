@@ -1,0 +1,53 @@
+<div class="main-container">
+  <div class="card-header">User Information</div>
+  <div class="card-body">
+        <div class="form-group row">
+          <p class="col-sm-4 col-form-label">
+            User Name
+          </p>
+          <div class="col-sm-12">
+            <span >{{user.name}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <p class="col-sm-4 col-form-label">
+            Age
+          </p>
+          <div class="col-sm-12">
+            <span>{{user.age}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <p class="col-sm-4 col-form-label">
+            Birthday
+          </p>
+          <div class="col-sm-12">
+            <span>{{ user.dateOfBirth | date }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <p class="col-sm-4 col-form-label">
+            Date of login
+          </p>
+          <div class="col-sm-12">
+            <span>{{ user.dateOfFirstLogin | date }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <p class="col-sm-6 col-form-label">
+            Date of first notification
+          </p>
+          <div class="col-sm-12">
+            <span>{{ user.dateOfNextNotification | date }}</span>
+          </div>
+        </div>
+    <div class="form-group row">
+      <p class="col-sm-6 col-form-label">
+        Info
+      </p>
+      <div class="col-sm-12">
+        <span>{{ user.information }}</span>
+      </div>
+    </div>
+  </div>
+</div>

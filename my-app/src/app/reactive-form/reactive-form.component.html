@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div class="card-header bg-primary">Submit</div>
+  <div class="card-header">User Information Edit</div>
   <div class="card-body">
     <form
       novalidate
@@ -18,8 +18,6 @@
                    type="text"
                    placeholder="username (required)"
                    formControlName="userName">
-                   <!--appAsyncUsernameValidator-->
-                   <!--appAsyncCamelCaseValidator>-->
             <span class="form-text text-muted"
                   *ngIf="(userForm.get('userName').touched || userForm.get('userName').dirty) && userForm.get('userName').errors">
               <span *ngIf="userForm.get('userName').errors.asyncRequiredUsername">
@@ -126,12 +124,3 @@
   </div>
 </div>
 <div class="user-info" *ngIf="submitted">
-  <h4>User Information</h4>
-    <span> User name: {{ submittedName }}</span><br>
-    <span> User age: {{ submittedAge }}</span><br>
-    <span> User birthday: {{ submittedBirthday }}</span><br>
-    <span> User login date: {{ submittedDateOfLogin }}</span><br>
-    <span> User date of notification: {{ submittedDateOfNotify }}</span><br>
-  <!--<span> User date of notification: {{ submittedDateOfNotify | date }}</span>-->
-</div>
-
