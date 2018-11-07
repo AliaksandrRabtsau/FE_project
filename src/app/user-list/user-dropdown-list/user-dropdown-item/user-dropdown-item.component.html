@@ -1,0 +1,13 @@
+<div class="searched-items">
+  <div class="searched-item">
+    <span>name: {{user?.name}}</span>
+    <span>age: {{user?.age}}</span>
+  </div>
+  <div class="searched-item">
+    <span>birthday: {{user?.dateOfBirth | date:'fullDate'}}</span>
+    <span>first login: {{user?.dateOfFirstLogin | date}}</span>
+  </div>
+  <div class="searched-item">
+    info: {{user?.information}}
+  </div>
+</div>

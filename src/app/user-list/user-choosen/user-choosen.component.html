@@ -1,0 +1,9 @@
+<div class="choosen-panel">
+  <div class="choosen-panel-info">
+    <span>name: {{user?.name}}</span>
+    <span>age: {{user?.age}}</span>
+    <span>birthday: {{user?.dateOfBirth | date}}</span>
+    <span>short info: {{user?.information | slice:0:15}}</span>
+  </div>
+  <div class="arrow btn">&#9660;</div>
+</div>

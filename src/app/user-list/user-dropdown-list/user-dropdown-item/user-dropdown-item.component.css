@@ -1,0 +1,26 @@
+.searched-items {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-right: 2px solid rgba(0, 0, 0, 0);
+  padding-right: 5px;
+  padding-left: 5px;
+  transition: 0.3s ease-in-out;
+  border-bottom: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+.searched-items:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-right: 2px solid grey;
+  border-left: 2px solid grey;
+}
+
+.searched-item {
+  display: flex;
+  padding-left: 4%;
+}
+.searched-item > span:first-child {
+  width: 50%;
+}
+

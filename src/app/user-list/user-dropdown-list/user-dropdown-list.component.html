@@ -1,0 +1,14 @@
+<div class="search-panel">
+  <div class="search-panel-input">
+    <input class="search-input" type="text" placeholder="click to search user" (keyup)="filterSearch($event)">
+  </div>
+  <div>
+    <ng-container *ngIf="filteredUsers?.length; else noResults">
+      <app-user-dropdown-item *ngFor="let user of filteredUsers" [user]="user"
+                              (click)="selectUser.emit(user)"></app-user-dropdown-item>
+    </ng-container>
+    <ng-template #noResults>
+      <span>user not found</span>
+    </ng-template>
+  </div>
+</div>

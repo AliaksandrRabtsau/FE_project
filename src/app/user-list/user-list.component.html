@@ -1,0 +1,7 @@
+<div class="main-container">
+  <div class="card-header">User Search</div>
+    <app-user-choosen [user]="selectedUser" (click)="dropDown()">
+    </app-user-choosen>
+    <app-user-dropdown-list *ngIf="dropdown" [users]="users" (selectUser)="selectUser($event)">
+    </app-user-dropdown-list>
+</div>

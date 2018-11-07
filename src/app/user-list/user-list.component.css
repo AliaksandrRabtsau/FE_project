@@ -1,0 +1,27 @@
+.app-container {
+  width:200px
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 768px;
+  margin: 5px auto 0 auto;
+  background: ghostwhite;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card-header {
+  background: darkseagreen;
+  box-sizing: border-box;
+  position: relative;
+}
+
+app-user-dropdown-list {
+  position: absolute;
+  max-height: 65vh;
+  overflow: auto;
+  top: 100%;
+  width: 100%;
+}
