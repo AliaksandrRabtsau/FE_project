@@ -17,4 +17,8 @@ export class UserService {
   getUsers() {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
+
+  addUser(user) {
+    return this.http.post(`${this.apiUrl}/users/add`, user);
+  }
 }

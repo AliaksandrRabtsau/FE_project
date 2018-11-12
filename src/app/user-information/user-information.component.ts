@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services';
+import { Observable } from 'rxjs';
+
+import { select, Store } from '@ngrx/store';
+import { UserState } from '../store/state';
+import { getUser } from '../store/selectors';
+import { GetUser } from '../store/actions';
 
 import { User } from '../model/user';
 
@@ -9,16 +14,12 @@ import { User } from '../model/user';
   styleUrls: ['./user-information.component.css']
 })
 export class UserInformationComponent implements OnInit {
+  user$: Observable<User> = this.store.pipe(select(getUser));
 
-  user: User | any;
-
-  constructor(private authenticationService: AuthenticationService) {
-    this.user = this.authenticationService.getCurrentUser().subscribe(user => {
-      this.user = user;
-    });
+  constructor(private store: Store<UserState>) {
+    this.store.dispatch(new GetUser());
   }
 
   ngOnInit() {
-
   }
 }

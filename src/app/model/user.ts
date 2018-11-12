@@ -7,4 +7,5 @@ export interface User {
   dateOfFirstLogin?: string;
   dateOfNextNotification?: string;
   information?: string;
+  admin?: string;
 }

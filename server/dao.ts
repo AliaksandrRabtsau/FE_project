@@ -37,15 +37,15 @@ class Dao {
     });
   }
 
-  // addUser(user: User) {
-  //   return new Promise((resolve, reject) => {
-  //     const idList = this.example.map((item: User) => item.id);
-  //     user.setId(idList.length > 0 ? Math.max(...idList) + 1 : 1);
-  //     this.example.push(user);
-  //     this.saveFile();
-  //     resolve(user);
-  //   });
-  // }
+  addUser(user: User) {
+    return new Promise((resolve, reject) => {
+      const idList = this.example.map((item: User) => item.id);
+      user.id = (idList.length > 0 ? Math.max(...idList) + 1 : 1);
+      this.example.push(user);
+      this.saveFile();
+      resolve(user);
+    });
+  }
 
   loginUser(name: string, pass: string) {
     return new Promise((resolve, reject) => {
@@ -126,7 +126,7 @@ class Dao {
   }
 
   saveFile() {
-    fs.writeFileSync('./users.json', JSON.stringify(this.example), 'utf-8');
+    fs.writeFileSync('./server/users.json', JSON.stringify(this.example), 'utf-8');
   }
 }
 

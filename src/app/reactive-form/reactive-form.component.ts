@@ -14,6 +14,10 @@ import { AsyncOnlyLettersValidatorDirective } from '../validators';
 
 import { User } from '../model/user';
 
+import { Store } from '@ngrx/store';
+import { UserState } from '../store/state';
+import { UpdateCurrentUser } from '../store/actions';
+
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
@@ -31,7 +35,8 @@ export class ReactiveFormComponent implements OnInit {
               private asyncRequiredValidator: AsyncRequiredValidatorDirective,
               private asyncOnlyLettersValidator: AsyncOnlyLettersValidatorDirective,
               private auth: AuthenticationService,
-              private router: Router) {
+              private router: Router,
+              private store: Store<UserState>) {
     this.user = this.auth.getCurrentUser().subscribe(user => { this.user = user; });
   }
 
@@ -47,9 +52,8 @@ export class ReactiveFormComponent implements OnInit {
       dateOfFirstLogin: this.f.userLoginDate.value as string,
       dateOfNextNotification: this.f.userNotifyDate.value as string
     };
-    this.auth.updateUser(params).subscribe(() => {
+    this.store.dispatch(new UpdateCurrentUser(params));
       this.router.navigate(['/user-info']);
-    });
   }
 
   get f() { return this.userForm.controls; }

@@ -1,19 +1,19 @@
 <div class="main-container">
-  <div class="card-header">User Information Edit</div>
-  <div class="card-body">
+  <div class="card-header">Create New User</div>
+  <div class="card-body-my">
     <form
       novalidate
       (ngSubmit)="submit()"
       [formGroup]="userForm">
       <fieldset>
-        <div class="form-group row"
+        <div class="form-group row-my"
              [ngClass]="{'has-error': (userForm.get('userName').touched || userForm.get('userName').dirty) && !userForm.get('userName').valid}"
         >
-          <label class="col-sm-4 col-form-label" for="userNameId">
+          <label class="col-sm-4 col-form-label-my" for="userNameId">
             User Name
           </label>
           <div class="col-sm-12">
-            <input class="form-control"
+            <input class="form-control-my"
                    id="userNameId"
                    type="text"
                    placeholder="username (required)"
@@ -38,13 +38,23 @@
             </span>
           </div>
         </div>
-        <div class="form-group row"
+        <div class="form-group row-my">
+          <label class="col-sm-4 col-form-label-my" for="userPass">Password</label>
+          <div class="col-sm-12">
+            <input type="text" formControlName="userPass" class="form-control-my" placeholder="password (required)"
+                   [ngClass]="{ 'has-error': submitted && userForm.get('userPass').errors }"/>
+            <span class="form-text text-muted" *ngIf="submitted && userForm.get('userPass').errors">
+              <span *ngIf="userForm.get('userPass').errors.required">Password is required</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row-my"
              [ngClass]="{'has-error': (userForm.get('userAge').touched || userForm.get('userAge').dirty) && !userForm.get('userAge').valid}">
-          <label class="col-sm-4 col-form-label" for="age">
+          <label class="col-sm-4 col-form-label-my" for="age">
             Age
           </label>
           <div class="col-sm-12">
-            <input class="form-control"
+            <input class="form-control-my"
                    id="age"
                    type="text"
                    placeholder="user age from 18 to 65"
@@ -57,13 +67,13 @@
             </span>
           </div>
         </div>
-        <div class="form-group row"
+        <div class="form-group row-my"
              [ngClass]="{'has-error': (userForm.get('userBirth').touched || userForm.get('userBirth').dirty) && !userForm.get('userBirth').valid}">
-          <label class="col-sm-4 col-form-label" for="dateOfBirth">
+          <label class="col-sm-4 col-form-label-my" for="dateOfBirth">
             Birthday
           </label>
           <div class="col-sm-12">
-            <input class="form-control"
+            <input class="form-control-my"
                    id="dateOfBirth"
                    type="text"
                    placeholder="YYYY/MM/DD"
@@ -76,48 +86,30 @@
             </span>
           </div>
         </div>
-        <div class="form-group row"
-             [ngClass]="{'has-error': (userForm.get('userLoginDate').touched || userForm.get('userLoginDate').dirty) && !userForm.get('userLoginDate').valid}">
-          <label class="col-sm-4 col-form-label" for="dateOfLogin">
-            Date of login
-          </label>
+        <div class="form-group row-my">
+          <label class="col-sm-4 col-form-label-my" for="userInfo">Information</label>
           <div class="col-sm-12">
-            <input class="form-control"
-                   id="dateOfLogin"
-                   type="text"
-                   placeholder="DD MMMM YYYY"
-                   formControlName="userLoginDate">
-            <span class="form-text text-muted"
-                  *ngIf="(userForm.get('userLoginDate').touched || userForm.get('userLoginDate').dirty) && userForm.get('userLoginDate').errors">
-              <span *ngIf="userForm.get('userLoginDate').errors.userDateOfLogin">
-                Please enter correct date of login. Example (25 November 2000).
-              </span>
+            <input type="text" formControlName="userInfo" class="form-control-my" placeholder="Information"
+                   [ngClass]="{ 'has-error': submitted && userForm.get('userInfo').errors }">
+            <span class="form-text text-muted" *ngIf="submitted && userForm.get('userInfo').errors">
+              <span *ngIf="userForm.get('userInfo').errors.required">Info is required</span>
             </span>
           </div>
         </div>
-        <div class="form-group row"
-             [ngClass]="{'has-error': (userForm.get('userNotifyDate').touched || userForm.get('userNotifyDate').dirty) && !userForm.get('userNotifyDate').valid}">
-          <label class="col-sm-6 col-form-label" for="dateOfFirstNotification">
-            Date of first notification
-          </label>
+        <div class="form-group row-my">
+          <label class="col-sm-4 col-form-label-my" for="admin">admin</label>
           <div class="col-sm-12">
-            <input class="form-control"
-                   id="dateOfFirstNotification"
-                   type="text"
-                   placeholder="DD-MMM-YY"
-                   formControlName="userNotifyDate">
-            <span class="form-text text-muted"
-                  *ngIf="(userForm.get('userNotifyDate').touched || userForm.get('userNotifyDate').dirty) && userForm.get('userNotifyDate').errors">
-              <span *ngIf="userForm.get('userNotifyDate').errors.userDateOfFirstNotify">
-                Please enter correct date of first notification. Example (25-Nov-00).
-              </span>
+            <input type="text" formControlName="admin" class="form-control-my" placeholder="true / false"
+                   [ngClass]="{ 'has-error': submitted && userForm.get('admin').errors }"/>
+            <span class="form-text text-muted" *ngIf="submitted && userForm.get('admin').errors">
+              <span *ngIf="userForm.get('admin').errors.required">Admin is required</span>
             </span>
           </div>
         </div>
         <button class="btn btn-primary"
                 type="submit"
                 [disabled]="!userForm.valid">
-          submit
+          create
         </button>
       </fieldset>
     </form>

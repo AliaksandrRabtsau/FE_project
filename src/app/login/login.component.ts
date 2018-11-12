@@ -3,6 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services';
 
+import { Store } from '@ngrx/store';
+import { UserState } from '../store/state';
+import { GetUser } from '../store/actions';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private auth: AuthenticationService) { }
+              private auth: AuthenticationService,
+              private store: Store<UserState>) { }
 
 
   ngOnInit() {
@@ -35,21 +40,22 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls; }
 
-    login() {
-      this.submitted = true;
+  login() {
+    this.submitted = true;
 
-      if (this.loginForm.invalid) {
-        return;
-      }
-
-      this.loading = true;
-      this.auth.login((this.f.username.value).trim(), (this.f.password.value).trim())
-        .subscribe(
-            () => {
-            this.router.navigate(['/user-info']);
-          },
-          (error) => {
-            this.loading = false;
-          });
+    if (this.loginForm.invalid) {
+      return;
     }
+
+    this.loading = true;
+    this.auth.login((this.f.username.value).trim(), (this.f.password.value).trim())
+      .subscribe(
+        () => {
+          this.store.dispatch(new GetUser());
+          this.router.navigate(['/user-info']);
+        },
+        (error) => {
+          this.loading = false;
+        });
+  }
 }

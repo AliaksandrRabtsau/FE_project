@@ -1,0 +1,59 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 768px;
+  margin: 5px auto 0 auto;
+  background: ghostwhite;
+}
+
+.form-control-my {
+  width: 45%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.card-body-my {
+  flex: 1 1 auto;
+  padding-left: 1.25rem;
+}
+
+.col-form-label-my {
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+}
+
+.row-my {
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+input.ng-pending {
+  border: 1px solid yellow;
+}
+
+.user-info {
+  text-align: right;
+  margin-right: 5%;
+}
+
+.card-header {
+  background: cornflowerblue;
+  margin-bottom: 1rem;
+}

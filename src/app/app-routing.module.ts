@@ -7,9 +7,9 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 
-
-// import { ComboboxComponent } from './user-list/combobox/combobox.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { AdminComponent } from './admin/admin.component';
+import { CreateUserComponent } from './admin/create-user/create-user.component';
 
 
 const routes: Routes = [
@@ -20,8 +20,10 @@ const routes: Routes = [
       path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
     { path: 'user-info', component: UserInformationComponent},
     { path: 'user-edit', component: ReactiveFormComponent},
-    // { path: 'user-list', component: ComboboxComponent}
-    { path: 'user-list', component: UserListComponent}
+    { path: 'user-list', component: UserListComponent},
+    { path: 'admin', component: AdminComponent, children: [
+      {path: 'create-user', component: CreateUserComponent}
+    ]}
   ]
   }
 ];

@@ -10,10 +10,9 @@ import { User } from '../../model/user';
 export class UserDropdownListComponent implements OnInit {
 
   @Input() dropdown = true;
-  // @Input() users?: User[];
-  @Input() users?: any;
+  @Input() users: User[];
   @Output() selectUser = new EventEmitter<User>();
-  filteredUsers: any;
+  filteredUsers?: any;
 
   constructor() {
   }
@@ -25,7 +24,7 @@ export class UserDropdownListComponent implements OnInit {
   filterSearch($event) {
     this.setSearchedItems($event.target.value);
   }
-
+  //
   setSearchedItems(value) {
     this.filteredUsers = this.users.filter(user => user.name
       .toLowerCase()

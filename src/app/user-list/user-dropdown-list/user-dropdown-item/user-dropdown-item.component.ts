@@ -8,7 +8,7 @@ import { User } from '../../../model/user';
 })
 export class UserDropdownItemComponent implements OnInit {
 
-  @Input() user?: User;
+  @Input() user: User;
   constructor() { }
 
   ngOnInit() {

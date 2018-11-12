@@ -9,14 +9,12 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    private router: Router,
-    private authService: AuthenticationService) {
+  constructor(private router: Router,
+              private auth: AuthenticationService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-  // canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.isAuthenticated()
+    return this.auth.isAuthenticated()
       .pipe(
         map(() => {
           return true;
@@ -27,30 +25,4 @@ export class AuthGuard implements CanActivate {
         })
       );
   }
-
-  // throwOut() {
-  //   this.navigateLogin();
-  //   return of(false);
-  // }
-  //
-  // navigateLogin() {
-  //   this.router.navigate(['/login']);
-  // }
-  //
-  // allowRoute() {
-  //   return true;
-  // }
 }
-
-// canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-//   if (this.auth.isAuthenticated()) {
-//   return of(true)
-// } else {
-//   this.router.navigate(['/login'], {
-//     queryParams: {
-//       accessDenied: true
-//     }
-//   })
-//   return of(false)
-// }
-// }

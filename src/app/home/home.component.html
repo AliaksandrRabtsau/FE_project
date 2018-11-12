@@ -5,6 +5,9 @@
         <span class="right-margin" *ngFor="let link of links" routerLinkActive="active">
           <a [routerLink]="[link.url]">{{link.name}}</a>
         </span>
+        <span class="right-margin" *ngIf="(user$ | async).admin === 'true'" routerLinkActive="active">
+          <a [routerLink]="['/admin']">ADMIN</a>
+        </span>
 
       </li>
       <li class="flex-div">
@@ -16,7 +19,6 @@
     </ul>
   </nav>
 </header>
-
 <main class="content">
   <router-outlet></router-outlet>
 </main>

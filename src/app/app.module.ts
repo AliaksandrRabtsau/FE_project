@@ -12,12 +12,20 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { AdminComponent } from './admin/admin.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
 
 import { HttpInterceptorProviders } from './interceptors';
 
+import { StoreModule } from '@ngrx/store';
+import { allUsersReducer } from './store/reducers';
+import { userReducer } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from './store/effects';
+import { CreateUserComponent } from './admin/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +34,9 @@ import { HttpInterceptorProviders } from './interceptors';
     LoginComponent,
     HomeComponent,
     UserInformationComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    AdminComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +45,14 @@ import { HttpInterceptorProviders } from './interceptors';
     HttpClientModule,
     ValidatorsModule,
     AppRoutingModule,
-    UserListModule
+    UserListModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('users', allUsersReducer),
+    StoreModule.forFeature('user', userReducer),
+    EffectsModule.forRoot([UsersEffects]),
+    EffectsModule.forFeature([UsersEffects]),
+    StoreDevtoolsModule.instrument()
+
   ],
   providers: [
     AuthenticationService,

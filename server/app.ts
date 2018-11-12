@@ -4,6 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import {dao} from './dao';
+import {User} from './user';
 
 export const app = express();
 
@@ -51,25 +52,22 @@ app.get('/recover-pass', function (req, res) {
     .then((data) => {
       res.status(200).json(data);
     })
-    // .then((data) => {
-    //   res.status(401).send();
-    // })
     .catch((err) => {
-      // res.status(404).end('Something gone wrong');
       res.status(404).send(err);
     });
 });
 
-// app.post('/users/add', (req, res) => {
-//   const reqItem: User = new User(req.body.name, req.body.password, req.body.age, req.body.dateOfBirth, req.body.dateOfFirstLogin, req.body.dateOfNextNotification, req.body.information);
-//   dao.addUser(reqItem)
-//     .then((data) => {
-//       res.status(201).json(data)
-//     })
-//     .catch(() => {
-//       res.status(404).end('Something gone wrong')
-//     });
-// });
+app.post('/users/add', (req, res) => {
+  const { name, password, age, dateOfBirth, dateOfFirstLogin, dateOfNextNotification, information, admin} = req.body;
+  const user: User = {id: 0, name, password, age, dateOfBirth, dateOfFirstLogin, dateOfNextNotification, information, admin};
+  dao.addUser(user)
+    .then((data) => {
+      res.status(201).json(data);
+    })
+    .catch(() => {
+      res.status(404).end('Something gone wrong');
+    });
+});
 
 app.post('/login', (req, res) => {
   const nameApp = req.body.name;
@@ -109,19 +107,6 @@ app.get('/current-user', (req, res) => {
       res.status(401).end('unauthorized');
     });
 });
-
-// app.put('/users/:id', (req, res) => {
-//   const reqItem: User = new User(req.body.name, req.body.password, req.body.age, req.body.dateOfBirth, req.body.dateOfFirstLogin, req.body.dateOfNextNotification, req.body.information);
-//   reqItem.id = +req.params.id;
-//   reqItem.age = +req.body.age;
-//   dao.updateUserById(reqItem)
-//     .then((data) => {
-//       res.status(201).json(data);
-//     })
-//     .catch(() => {
-//       res.status(404).end('Something gone wrong')
-//     });
-// });
 
 app.put('/update-user', (req, res) => {
   const {jwtoken} = req.cookies;

@@ -6,7 +6,7 @@
             User Name
           </p>
           <div class="col-sm-12">
-            <span >{{user.name}}</span>
+            <span>{{ (user$ | async).name }}</span>
           </div>
         </div>
         <div class="form-group row">
@@ -14,7 +14,7 @@
             Age
           </p>
           <div class="col-sm-12">
-            <span>{{user.age}}</span>
+            <span>{{ (user$ | async).age }}</span>
           </div>
         </div>
         <div class="form-group row">
@@ -22,7 +22,7 @@
             Birthday
           </p>
           <div class="col-sm-12">
-            <span>{{ user.dateOfBirth | date }}</span>
+            <span>{{ (user$ | async).dateOfBirth | date }}</span>
           </div>
         </div>
         <div class="form-group row">
@@ -30,7 +30,7 @@
             Date of login
           </p>
           <div class="col-sm-12">
-            <span>{{ user.dateOfFirstLogin | date }}</span>
+            <span>{{ (user$ | async).dateOfFirstLogin | date }}</span>
           </div>
         </div>
         <div class="form-group row">
@@ -38,7 +38,7 @@
             Date of first notification
           </p>
           <div class="col-sm-12">
-            <span>{{ user.dateOfNextNotification | date }}</span>
+            <span>{{ (user$ | async).dateOfNextNotification | date }}</span>
           </div>
         </div>
     <div class="form-group row">
@@ -46,7 +46,7 @@
         Info
       </p>
       <div class="col-sm-12">
-        <span>{{ user.information }}</span>
+        <span>{{ (user$ | async).information }}</span>
       </div>
     </div>
   </div>

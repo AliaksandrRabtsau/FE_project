@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
 
-# Added 4th task 
+# Added 5th task 
 ## Include:
 ```
 nodeJS server 
@@ -11,7 +11,15 @@ forgot password page
 info page
 edit page
 list page
+admin page
+Redux
 ```
+### Do not include:
+```
+Material
+Translate
+```
+
  ## For start you need:
  ### Run development server
  - ng serve
